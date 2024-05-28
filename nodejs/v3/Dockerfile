@@ -21,8 +21,8 @@ USER container
 STOPSIGNAL SIGINT
 
 # Use the same relative path for consistency
-COPY        --chown=container:container ./../entrypoint.sh /entrypoint.sh
-RUN         chmod +x /entrypoint.sh
+COPY        --chown=container:container ./../v3.sh /v3.sh
+RUN         chmod +x /v3.sh
 
 ENTRYPOINT  ["/usr/bin/tini", "-g", "--"]
-CMD         ["/entrypoint.sh"]
+CMD         ["/v3.sh"]
