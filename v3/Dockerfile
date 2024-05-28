@@ -15,14 +15,16 @@ USER container
 ENV USER=container HOME=/home/container
 WORKDIR /home/container
 
+# Temporarily switch to root to create the directory and set permissions
+USER root
+RUN mkdir -p /home/container/config && chmod 700 /home/container/config
+USER container
+
 # Set permissions for the /home/container directory
 RUN chmod 500 /home/container
 
-# Create the ./config directory and set permissions
-RUN mkdir -p /home/container/config && chmod 700 /home/container/config
-
 # Copy entrypoint script and set permissions
-COPY --chown=container:container ./entrypoint.sh /entrypoint.sh
+COPY --chown=container:container ./../entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 # Set entrypoint and default command
