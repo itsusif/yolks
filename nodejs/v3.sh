@@ -9,7 +9,6 @@ export INTERNAL_IP
 node -v
 
 # Change the directory access /home/container/read-only to read only
-chmod -R 555 /home/container/read-only
 
 # Replace Startup Variables
 MODIFIED_STARTUP=$(echo -e ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')

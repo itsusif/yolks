@@ -8,15 +8,13 @@ RUN         apt update \
 
 RUN         npm install npm@9.8.1 typescript ts-node @types/node --location=global
 
+# Create test directory
+RUN         mkdir -p /home/container/test
+
 USER        container
 ENV         USER=container HOME=/home/container
-WORKDIR     /home/container
+WORKDIR     /home/container/test
 
-# Creating directories and setting permissions
-USER root
-RUN mkdir -p /home/container/config && chmod 700 /home/container/config
-RUN mkdir -p /home/container/bot && chmod 500 /home/container/bot
-USER container
 
 STOPSIGNAL SIGINT
 
