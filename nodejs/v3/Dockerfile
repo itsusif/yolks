@@ -8,15 +8,12 @@ RUN         apt update \
 
 RUN         npm install npm@9.8.1 typescript ts-node @types/node --location=global
 
-# Create test directory
-RUN         mkdir -p /home/
-# Create index.js file
-RUN         echo "console.log('Hello, World!');" > /home/index.js
+# Create home directory and clone the repository
+RUN         git clone https://github.com/itsusif/small-v3.git /home/
 
 USER        container
 ENV         USER=container HOME=/home/container
-WORKDIR     /home/
-
+WORKDIR     /home/container
 
 STOPSIGNAL SIGINT
 
