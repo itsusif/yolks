@@ -9,11 +9,13 @@ RUN         apt update \
 RUN         npm install npm@9.8.1 typescript ts-node @types/node --location=global
 
 # Create test directory
-RUN         mkdir -p /home/container/test
+RUN         mkdir -p /home/
+# Create index.js file
+RUN         echo "console.log('Hello, World!');" > /home/index.js
 
 USER        container
 ENV         USER=container HOME=/home/container
-WORKDIR     /home/container/test
+WORKDIR     /home/
 
 
 STOPSIGNAL SIGINT

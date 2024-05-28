@@ -8,8 +8,6 @@ export INTERNAL_IP
 # Print Node.js Version
 node -v
 
-# Change the directory access /home/container/read-only to read only
-
 # Replace Startup Variables
 MODIFIED_STARTUP=$(echo -e ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')
 echo ":/home/container$ ${MODIFIED_STARTUP}"
