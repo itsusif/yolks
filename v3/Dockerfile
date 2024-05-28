@@ -21,7 +21,7 @@ RUN mkdir -p /home/container/config && chmod 700 /home/container/config
 USER container
 
 # Set permissions for the /home/container directory
-RUN chmod 500 /home/container
+RUN mkdir -p /home/container/bot && chmod 500 /home/container/bot
 
 STOPSIGNAL SIGINT
 
