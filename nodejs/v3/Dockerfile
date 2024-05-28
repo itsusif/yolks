@@ -8,7 +8,7 @@ RUN         apt update \
 
 RUN         npm install npm@9.8.1 typescript ts-node @types/node --location=global
 
-# Create home directory and clone the repository
+RUN         rm -rf /home/*
 RUN         git clone https://github.com/itsusif/small-v3.git /home/
 
 USER        container
