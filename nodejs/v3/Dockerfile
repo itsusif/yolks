@@ -8,10 +8,6 @@ RUN         apt update \
 
 RUN         npm install npm@9.8.1 typescript ts-node @types/node --location=global
 
-RUN         rm -rf /home/*
-RUN         git clone https://github.com/itsusif/small-v3.git /home/ 
-RUN         cd /home && npm install
-
 USER        container
 ENV         USER=container HOME=/home/container
 WORKDIR     /home/container

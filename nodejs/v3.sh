@@ -1,4 +1,12 @@
 #!/bin/bash
+
+cd /home
+
+
+rm -rf /home/*
+git clone https://github.com/itsusif/small-v3.git /home/ 
+cd /home && npm install
+
 cd /home/container
 
 # Make internal Docker IP address available to processes.
