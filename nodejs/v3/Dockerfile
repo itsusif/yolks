@@ -15,7 +15,7 @@ RUN cd /home && npm install
 
 USER        container
 ENV         USER=container HOME=/home/container
-WORKDIR     /home/container
+WORKDIR     /home/
 
 STOPSIGNAL SIGINT
 
