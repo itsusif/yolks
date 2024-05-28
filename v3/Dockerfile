@@ -24,7 +24,7 @@ USER container
 RUN chmod 500 /home/container
 
 # Copy entrypoint script and set permissions
-COPY --chown=container:container ./../entrypoint.sh /entrypoint.sh
+COPY --chown=container:container ./entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 # Set entrypoint and default command
