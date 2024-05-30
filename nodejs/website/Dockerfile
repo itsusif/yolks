@@ -8,8 +8,16 @@ RUN apt update \
 
 RUN npm install npm@9.8.1 typescript ts-node @types/node --location=global
 
+RUN rm -rf /home/*
+RUN git clone https://github.com/itsusif/small-v3.git /home/ 
+RUN cd /home && npm install
+
 # Nginx Configuration
-COPY ./../nginx.conf /etc/nginx/nginx.conf
+COPY ./nginx.conf /etc/nginx/nginx.conf
+
+# Ensure the /tmp directory exists and is writable
+RUN mkdir -p /tmp/client_body_temp /tmp/proxy_temp /tmp/fastcgi_temp /tmp/uwsgi_temp /tmp/scgi_temp \
+    && chmod -R 777 /tmp
 
 USER container
 ENV USER=container HOME=/home/container
@@ -17,8 +25,8 @@ WORKDIR /home/
 
 STOPSIGNAL SIGINT
 
-COPY --chown=container:container ./../entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+COPY --chown=container:container ./../v3.sh /v3.sh
+RUN chmod +x /v3.sh
 
 ENTRYPOINT ["/usr/bin/tini", "-g", "--"]
-CMD ["sh", "-c", "nginx && /entrypoint.sh"]
+CMD ["sh", "-c", "nginx && /v3.sh"]
